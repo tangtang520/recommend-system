@@ -2,14 +2,19 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.framework</groupId>
-    <artifactId>MovieRecommendSystem</artifactId>
+    <groupId>com.atguigu</groupId>
+    <artifactId>recommender</artifactId>
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
+    
     <modules>
-        <module>recommender</module>
+        <module>DataLoader</module>
+        <module>StatisticsRecommender</module>
+        <module>OfflineRecommender</module>
+        <module>StreamingRecommender</module>
     </modules>
 
     <properties>
@@ -49,6 +54,43 @@
             <version>${log4j.version}</version>
         </dependency>
     </dependencies>
+
+    <dependencyManagement>
+        <dependencies>
+            <!-- 引入Spark相关的Jar包 -->
+            <dependency>
+                <groupId>org.apache.spark</groupId>
+                <artifactId>spark-core_2.11</artifactId>
+                <version>${spark.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.spark</groupId>
+                <artifactId>spark-sql_2.11</artifactId>
+                <version>${spark.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.spark</groupId>
+                <artifactId>spark-streaming_2.11</artifactId>
+                <version>${spark.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.spark</groupId>
+                <artifactId>spark-mllib_2.11</artifactId>
+                <version>${spark.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.spark</groupId>
+                <artifactId>spark-graphx_2.11</artifactId>
+                <version>${spark.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.scala-lang</groupId>
+                <artifactId>scala-library</artifactId>
+                <version>${scala.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
     <build>
         <!--声明并引入子项目共有的插件-->
         <plugins>
@@ -98,5 +140,6 @@
             </plugins>
         </pluginManagement>
     </build>
+
 
 </project>
